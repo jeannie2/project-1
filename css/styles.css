@@ -1,0 +1,84 @@
+ html,
+ body {
+   height: 100%;
+ }
+
+ #gameScreen {
+   height: 80vh;
+   background-color: white;
+ }
+
+ #game-over-box {
+   height: 80vh;
+   width: 80%;
+   display: inline-block;
+   vertical-align: middle;
+ }
+
+ .word {
+   /*-webkit-text-stroke: 2px blue;
+      background-color: red;
+    -webkit-text-fill-color: white; */
+   padding: 5px;
+   font-size: 2rem;
+   color: blue;
+   border: 2px solid black;
+   border-radius: 10%;
+   /*
+      font-family: 'Passion One', cursive;
+      font-family: 'Wendy One', sans-serif;
+      font-family: 'Archivo Black', sans-serif;*/
+   font-family: 'Londrina Solid', cursive;
+ }
+
+ .win {
+   box-shadow: 0 0 10px yellow;
+   color: red;
+   border: 2px solid black;
+ }
+
+ #gameTitle {
+   font-family: 'Londrina Solid', cursive;
+   -webkit-text-stroke: 2px black;
+   -webkit-text-fill-color: white;
+ }
+
+ .modal-title {
+   font-family: 'Londrina Solid', cursive;
+   font-size: 1.3rem;
+ }
+
+ .modal-body {
+   font-family: 'Londrina Solid', cursive;
+   font-size: 1.3rem;
+ }
+
+ #game-over-box {
+   font-family: 'Londrina Solid', cursive;
+ }
+
+ #points {
+   font-family: 'Londrina Solid', cursive;
+ }
+
+ #timer {
+   font-family: 'Londrina Solid', cursive;
+ }
+
+ #start-btn {
+   font-family: 'Londrina Solid', cursive;
+   font-size: 1rem;
+ }
+
+ #game-over-box {
+   display: none;
+   /* delete later */
+   text-align: center;
+   border: 2px solid black;
+ }
+
+ .gameOverText {
+   top: 40%;
+   transform: translateY(-40%);
+   position: relative;
+ }
