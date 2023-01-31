@@ -1,16 +1,16 @@
 <!--
--sound effectshttps://github.com/c0ldlimit/vimcolors.git
+-sound
 -bring mic?
--position of words
--what if dont say anything and all words disappear
+-what if dont say anything and all words disappear/
 -might repeat the same word eg if u say it, but then it generates soon after
 
--npm
--jquery
--overlap
--grammar
--stop all animations in progress cut off time - clear setinterval
--remove all text from thing
+-grammar  + didnt check grammarlist for repeating on init <<
+-overlap <<
+-stop all animations in progress cut off time - clear setinterval <<
+-remove all text from thing <<
+-clean up code <<
+-no speech detection error too soon? <<
+-what if spoken word no match anything <<
 -->
 
 <!DOCTYPE html>
@@ -39,60 +39,57 @@
 </head>
 
 <body>
-  <audio id="sound"> <source src="" type="audio/mp3"> </audio>
-
-  <div class="container border-primary" id="game-on-box">
-    <div class="row text-center border-danger">
-      <div class="col-lg-4 d-none d-lg-block border"></div>
-      <div class="col-lg-4 col-12 border"><h1 class="display-3" id="gameTitle">WORD POP</h1></div>
-      <div class="col-lg-2 col-6 border" id="start">
-          <button type="button" class="btn btn-danger btn-sm border-dark" id="start-btn">START SPEAKING</button>
-     </div>
-      <div class="col-lg-2 col-6 border" id="timer"><h2><span id="secondsLeft">60</span> seconds</h2>
-       </div>
+  <div class="container-fluid" id="game-on-screen">
+    <div class="row text-center">
+      <div class="col-lg-4 d-none d-lg-block"></div>
+      <div class="col-lg-4 col-12">
+        <h1 class="display-3" id="game-title">WORD POP</h1>
+      </div>
+      <div class="col-lg-2 col-6" id="start">
+          <button type="button" class="btn-lg btn-danger border-dark" id="start-btn">START SPEAKING</button>
+      </div>
+      <div class="col-lg-2 col-6" id="timer">
+        <h2><span id="secondsLeft">60</span> seconds</h2>
+      </div>
     </div>
-            <div class="row text-center border-danger">
-              <div class="col-lg-1 d-none d-lg-block border"></div>
-              <div class="col-lg-10 md-12 sm-12 border" id="gameScreen">
-
-              </div>
-              <div class="col-lg-1 d-none d-lg-block border"></div>
-           </div>
-
-            <div class="row border">
-              <div class="col text-center border">
-                <h2 id="points"><strong>Points: &nbsp</strong><span id="scoreMain">0</span></h2>
-              </div>
-            </div>
-      </div>
-
-<div class="modal fade" id="myModal" role="dialog">
-    <!-- Modal content-->
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-dialog"></div>
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Word Pop</h4>
-         <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      <div class="modal-body">
-        <p>Say as many words as you can before time runs out! <br>
-          Press the <strong>start speaking button </strong> to begin. </p>
-      </div>
-
+    <div class="row">
+      <div class="col-lg-1 d-none d-lg-block"></div>
+        <div class="col-lg-10 md-12 sm-12" id="game-screen"> </div>
+      <div class="col-lg-1 d-none d-lg-block"></div>
     </div>
-</div>
+    <div class="row">
+      <div class="col text-center">
+        <h2 id="points"><strong>Points: &nbsp</strong><span id="score-main">0</span></h2>
+      </div>
+    </div>
   </div>
 
-  <div id="game-over-box" style="display: block;" class="text-center mx-auto">
-    <div class="container gameOverText">
-    <h1 class="text-center" id="alert-message">Time's up!</h1> <br><br>
-    <h3 class="text-center">You scored <span id="scoreGameOver">0</span> points</h3> <br>
-    <button type="button" class="btn-lg btn-primary center-block" id="restart-btn">Play again</button>
+  <div class="modal fade" id="my-modal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title">Word Pop</h1>
+          <button type="button" class="modal-close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Say as many words as you can before time runs out! <br>
+            Press the <strong>start speaking button </strong> to begin. </p>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
 
-</div>
+  <div id="game-over-screen" style="display: block;" class="text-center mx-auto">
+    <div class="container-fluid game-over-text">
+      <h1 id="alert-message">Time's up!</h1> <br><br>
+      <h3>You scored <span id="score-game-over">0</span> points</h3> <br>
+      <button type="button" class="btn-lg btn-primary center-block" id="restart-btn">Play again</button>
+    </div>
+  </div>
+
+  </div>
+
+  <audio id="sound"> <source src="pop.mp3" type="audio/mp3"></audio>
 </body>
 </html>
 
