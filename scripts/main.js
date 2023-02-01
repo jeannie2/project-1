@@ -26,7 +26,7 @@ var recognition = new SpeechRecognition()
 
 var transcriptNoSpaces = [];
 var grammarList = [...words(50)]
-let listening
+// let listening
 // let noError
 
 // if (SpeechGrammarList) {
@@ -38,7 +38,7 @@ var grammar = '#JSGF V1.0; grammar words; public <grammar> = ' + grammarList.joi
 speechRecognitionList.addFromString(grammar, 1)
 recognition.grammars = speechRecognitionList
 
-recognition.continuous = false // default: false
+recognition.continuous = false; // default: false
 recognition.lang = 'en-US'
 recognition.interimResults = false // default: false
 recognition.maxAlternatives = 1 // default: 1
@@ -76,7 +76,6 @@ const randomRGB = () => {
 
 const randomTime = () => {
   let randomTime = Math.floor(Math.random() * (18000 - 5000 + 1) + 5000)
-  console.log("RANDOM TIME: " + randomTime)
   return randomTime
 }
 
@@ -94,6 +93,7 @@ const startTimer = () => {
 }
 
 const handleRestart = () => {
+  // listening = false;
   interval = null
   timer = 60;
   score = 0
@@ -102,10 +102,14 @@ const handleRestart = () => {
   $gameOnScreen.show()
   $gameOverScreen.hide()
   $secondsLeft.text(timer)
-  $scoreMain.text('')
+  $scoreMain.text('0')
+  location.reload(true);
 }
 
+let gameOverStatus = false;
+
 const gameOver = () => {
+  gameOverStatus = true;
   console.log("GAME OVER")
   // noError === false
   recognition.stop()
@@ -118,6 +122,7 @@ const gameOver = () => {
   $gameOverScreen.show()
   clearInterval(divInterval)
   clearTimeout(hideWord)
+  return gameOverStatus
 }
 
   let unspokenExpiredWords = []
@@ -150,17 +155,17 @@ function generateText(transcript) {
 
   // let removedWords = []
   // wordDiv.classList.add("mynewmove")
-  // wordDiv.style.animationName = 'mynewmove';
-   // wordDiv.style.animationDelay = "5000s" //randomTime() + "ms";
+  // wordDiv.style.animationName = 'fade';
+  //  wordDiv.style.animationDelay = "5000s" //randomTime() + "ms";
 
-   wordDiv.addEventListener("animationend", peacock)
+ //  wordDiv.addEventListener("animationend", peacock)
 
   function peacock() {
     let indexTimeout = activeWords.indexOf(transcript)
     activeWords.splice(indexTimeout, 1) // that word. modifies original array
     console.log('POP: ' + transcript)
     console.log('POPPED activeWords: ' + activeWords)
-    console.log('POPPED activeWords length: ' + activeWords.length)
+    // console.log('POPPED activeWords length: ' + activeWords.length)
     return activeWords
   }
 
@@ -249,24 +254,24 @@ function test(spokenTranscript) {
   }
 }
 
-const runSpeechRecognition = () => {
+/* const runSpeechRecognition = () => {
   // function runSpeechRecognition() {
   // recognition.start();
-  // recognition.start()
+   //recognition.start()
   recognition.onstart = function () {
-  listening = true
-  noError = true
+ // listening = true
+ // noError = true
   console.log('listening...')
   // console.log("noError in recognition.onstart: " + noError);
-  }
+  } */
 
-  if (!listening) {
+  /* if (!listening) {
     recognition.start()
   } else {
     console.log('already listening!')
     return; // or else throws error "failed to execute start on speechrecognition: recognition has already started"
   }
-}
+} */
 
 recognition.onresult = function (event) {
   // console.log("noError in recognition.onresult: " + noError);
@@ -275,28 +280,40 @@ recognition.onresult = function (event) {
   console.log('confidence: ' + confidence * 100 + '%')
   console.log('transcript: ' + spokenTranscript)
   test(spokenTranscript)
+  window.speechSynthesis.resume
 };
 
 recognition.onend = function () {
-  recognition.stop();
+  // recognition.stop();
+  // recognition.stop();
+   console.log('stopped recognition')
+
+   if(gameOverStatus === false) {
+    recognition.start()
+   } else {
+    recognition.stop();
+   }
+ //  alert("stopped recognition")
   // listening = false;
   // console.log('stopped recognition')
 
   // recognition.onspeechend = function () {
   // console.log("noError in recognition.onend: " + noError);
-  if (!noError) {
+
+  /* if (!noError) {
     // there is an error - no speech
     recognition.stop()
     listening = false;
     console.log('stopped recognition')
-    $alertMessage.text('No speech detected, game ended')
+    //$alertMessage.text('No speech detected, game ended')
     gameOver()
   } else {
     recognition.start()
-  }
+  } */
 };
 
 recognition.onnomatch = function (event) {
+  alert("NOT RECOGNITOIN")
   console.log('Speech not recognized')
 };
 
@@ -306,21 +323,25 @@ recognition.onerror = function (event) {
   // recognition.stop();
   // console.log('error: ' + event.error);
   if (event.error === 'no-speech') {
-    noError = false
+    // noError = false
     // console.log("noError in recognition.onerror: " + noError);
-    recognition.stop()
+    // recognition.stop()
+    // alert("NO SPEECH")
     $alertMessage.text('No speech detected, game ended')
-    // gameOver();
+    gameOver();
     // clearInterval(interval)
   }
 };
 
 const init = () => {
   $start.on('click', startTimer)
-  $start.on('click', runSpeechRecognition);
+ // $start.on('click', runSpeechRecognition);
+  $start.on('click', function() {
+    recognition.start()
+  })
   $start.on('click', function() {
     trackWords(10);
-    divInterval = setInterval(() => {trackWords(5)}, 5000)
+     divInterval = setInterval(() => {trackWords(5)}, 5000)
     // setInterval(function () { trackWords(5) }, 10000) //  always return 5 words
   })
   $restart.on('click', handleRestart)
