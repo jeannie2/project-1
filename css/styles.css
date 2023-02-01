@@ -18,32 +18,11 @@ body {
   font-size: 1rem;
 }
 
-.mynewmove {
-  animation-name: fafa;
-  animation-fill-mode: forwards;
-  animation-duration: 1s;
- /* animation-delay: 5s; */
-}
-
 .word {
   font-size: 2rem;
   font-family: 'Londrina Solid', cursive;
   -webkit-text-stroke: 1px white;
   -webkit-text-fill-color: black;
-  /* animation-name: fade;
-  animation-fill-mode: forwards;
-  animation-duration: 1s;
-  animation-delay: 5s; */
-}
-
-@keyframes fade {
-  from {
-    opacity: 100;
-  }
-
-  to {
-    opacity: 0;
-  }
 }
 
 .modal-close {
