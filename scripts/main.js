@@ -13,7 +13,6 @@ let interval = null
 let divInterval = null
 let timer = 60;
 let score = 0
-let hideWord = null
 let counter = [];
 let activeWords = []
 let winningWordsArray = []
@@ -113,7 +112,6 @@ const gameOver = () => {
   $gameOnScreen.hide()
   $gameOverScreen.show()
   clearInterval(divInterval)
-  clearTimeout(hideWord)
   return gameOverStatus
 }
 
