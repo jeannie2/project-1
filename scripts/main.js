@@ -25,7 +25,7 @@ var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEv
 var recognition = new SpeechRecognition()
 
 var transcriptNoSpaces = [];
-var grammarList = [...words(50)]
+var grammarList = [...words(100)]
 var speechRecognitionList = new SpeechGrammarList()
 
 var grammar = '#JSGF V1.0; grammar words; public <grammar> = ' + grammarList.join(' | ') + ' ;'
@@ -153,7 +153,7 @@ function trackWords(num) { // counter always starts out empty when call function
 }
 
 function check(transcript) {
-  if (activeWords.includes(transcript)) {
+  if (activeWords.includes(transcript) && !winningWordsArray.includes(transcript) ) {
     let index = activeWords.indexOf(transcript)
     console.log('index of word: ' + index)
     console.log('transcript: ' + transcript)
