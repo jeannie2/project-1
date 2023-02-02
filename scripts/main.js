@@ -67,11 +67,6 @@ const randomRGB = () => {
   return "rgb(" + r + "," + g + "," + b + ")"
 }
 
-const randomTime = () => {
-  let randomTime = Math.floor(Math.random() * (18000 - 5000 + 1) + 5000)
-  return randomTime
-}
-
 const startTimer = () => {
   if (!interval) {
     interval = setInterval(() => {
@@ -216,7 +211,6 @@ recognition.onend = function () {
 };
 
 recognition.onnomatch = function (event) {
-  alert("NOT RECOGNITOIN")
   console.log('Speech not recognized')
 };
 
