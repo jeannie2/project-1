@@ -153,7 +153,7 @@ function trackWords(num) { // counter always starts out empty when call function
 }
 
 function check(transcript) {
-  if (activeWords.includes(transcript) && !winningWordsArray.includes(transcript) ) {
+  if (activeWords.includes(transcript) ) {
     let index = activeWords.indexOf(transcript)
     console.log('index of word: ' + index)
     console.log('transcript: ' + transcript)
