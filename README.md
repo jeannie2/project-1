@@ -1,17 +1,18 @@
-# Art Tunnel
+# Word Pop
 
-Virtual reimagining of an art exhibition using RESTful routes, authentication, models for FSWDI project 2. 
+Browser-based game for FSWDI project 1
 
 ## Technologies
 
-This project was made using HTML, SCSS, JavaScript, jQuery, Bootstrap, animate.css, Yup, prisma, Express, Amazon S3
+This project was made using HTML, CSS, JavaScript, jQuery, Bootstrap, animate.css, Web Speech API, random-words NPM package
 
-## Install instructions
+## How to use
 
-Click Code and copy the ssh link. Use the command $ git clone [ssh link]. View demo on Github pages or Railway
+Press "start speaking" button to speak as many of the words displayed (points++) as you can before time runs out
 
 ## Sources
 
+https://www.npmjs.com/package/random-words <br/>
 https://animate.style/ <br/>
-https://pixabay.com/  <br/>
-https://freesound.org/
+https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API <br/>
+https://github.com/mdn/dom-examples/tree/main/web-speech-api <br/>
