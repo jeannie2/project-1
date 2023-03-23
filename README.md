@@ -1,6 +1,6 @@
 # Word Pop
 
-Browser-based game for FSWDI project 1
+Browser-based game for H Academy Full Stack Web Development Immersive bootcamp - project 1
 
 ## Technologies
 
